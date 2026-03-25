@@ -22,15 +22,16 @@ public class AppointmentController {
 		return null;
 	}
 	
+	@GetMapping("/{id}")
+	public Appointment getAppointmentById(@PathVariable long id) {
+		return null;
+	}
+	
 	@PostMapping
 	public Appointment createAppointment(@RequestBody Appointment appointment) {
 		return appointment;
 	}
 	
-	@GetMapping("/{id}")
-	public Appointment getAppointmentById(@PathVariable long id) {
-		return null;
-	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteAppiotment(@PathVariable long id) {

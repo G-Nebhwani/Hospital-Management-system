@@ -30,17 +30,19 @@ public class PatientController {
 		return patientService.getAllPatients();
 	}
 	
+	@GetMapping("/{id}")
+	public Patient getPatientById(@PathVariable Long id) {
+		System.out.println("Fetching id");
+		return patientService.getPatientById(id);
+	}
+	
 	@PostMapping
 	public Patient createPatient(@RequestBody Patient patient) {
 		System.out.println("Creating patient");
 		return patientService.createPatient(patient);
 	}
 	
-	@GetMapping("/{id}")
-	public Patient getPatientById(@PathVariable Long id) {
-		System.out.println("Fetching id");
-		return patientService.getPatientById(id);
-	}
+	
 	
 	@DeleteMapping("/{id}")
 	public void deletePatient(@PathVariable Long id) {
