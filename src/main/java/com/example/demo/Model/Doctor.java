@@ -30,7 +30,7 @@ public class Doctor {
 	@Column
     private String phone;
 	@Column
-    private String specialization;   // e.g., Cardiologist, Dentist
+    private String specialization;
 	@Column
 	private int experience;
 	@Column
@@ -38,6 +38,6 @@ public class Doctor {
 	@Column
     private String city;
     @Column
-    private double consultationFee;  
+    private double consultationFee;
 
 }

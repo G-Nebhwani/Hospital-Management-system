@@ -25,20 +25,20 @@ public class BillController {
 	public Bill getBillById(@PathVariable long id) {
 		return null;
 	}
-	
+
 	@PostMapping
 	public Bill createBill(@RequestBody Bill bill) {
 		return bill;
 	}
-	
-	
+
+
 	@DeleteMapping("/{id}")
 	public void deleteBill(@PathVariable long id) {
-		
+
 	}
-	
+
 	@PutMapping("/{id}")
-	public void updateBill(@PathVariable long id) {
-		
+	public void updateBill(@PathVariable long id, @RequestBody Bill bill) {
+
 	}
 }

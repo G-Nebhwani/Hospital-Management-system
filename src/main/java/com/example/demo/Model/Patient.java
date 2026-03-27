@@ -27,10 +27,10 @@ public class Patient {
 	@Column
 	private String name;
 	@Column
-	private int age;
+	private Integer age;
 	@Column
 	private String gender;
-	
+
 	@Column
 	private String phone;
 	@Column
@@ -45,5 +45,6 @@ public class Patient {
 	private String disease; // current illness
 	@Column
 	private String medicalHistory;
+
 
 }

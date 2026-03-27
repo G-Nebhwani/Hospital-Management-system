@@ -16,31 +16,31 @@ import com.example.demo.Model.Appointment;
 @RestController
 @RequestMapping("/api/v1/Appointment")
 public class AppointmentController {
-	
+
 	@GetMapping
 	public List<Appointment> getAllAppintments() {
 		return null;
 	}
-	
+
 	@GetMapping("/{id}")
 	public Appointment getAppointmentById(@PathVariable long id) {
 		return null;
 	}
-	
+
 	@PostMapping
 	public Appointment createAppointment(@RequestBody Appointment appointment) {
 		return appointment;
 	}
-	
-	
+
+
 	@DeleteMapping("/{id}")
 	public void deleteAppiotment(@PathVariable long id) {
-		
+
 	}
-	
+
 	@PutMapping("/{id}")
-	public void updateAppointment(@PathVariable long id) {
-		
+	public void updateAppointment(@PathVariable long id, @RequestBody Appointment appointment) {
+
 	}
 
 }
