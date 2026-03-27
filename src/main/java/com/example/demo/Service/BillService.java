@@ -20,7 +20,7 @@ public class BillService {
 	public List<Bill> getAllBills() {
 		try {
 			System.out.println("into service Layer");
-			return null;
+			return billRepo.findAll();
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while fetching all Bills: {}", e.getMessage());
@@ -30,7 +30,7 @@ public class BillService {
 
 	public Bill getBillById(Long id) {
 		try {
-			return null;
+			return billRepo.findById(id).orElse(null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while fetching Bills By ID : {}", e.getMessage());
@@ -38,10 +38,9 @@ public class BillService {
 		}
 	}
 
-
 	public Bill createBill(Bill bill) {
 		try {
-			return null;
+			return billRepo.save(bill);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while creating Bill: {}", e.getMessage());
@@ -51,7 +50,7 @@ public class BillService {
 
 	public void deleteBill(long id) {
 		try {
-			return;
+			billRepo.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while deleting Bill: {}", e.getMessage());
@@ -59,16 +58,24 @@ public class BillService {
 		}
 	}
 
-
-	public void updateBill(Long id) {
+	public void updateBill(Long id, Bill bill) {
 		try {
-			return ;
-		} catch (Exception e) {
-			// TODO: handle exception
-			logger.error("An Error is occurred while updating Bill: {}", e.getMessage());
+			Bill existing = billRepo.findById(id)
+					.orElseThrow(() -> new RuntimeException("Bill not found with id: " + id));
 
+			existing.setPatientId(bill.getPatientId());
+			existing.setDoctorId(bill.getDoctorId());
+			existing.setConsultationFee(bill.getConsultationFee());
+			existing.setTestCharge(bill.getTestCharge());
+			existing.setTotalAmount(bill.getTotalAmount());
+			existing.setPaymentStatus(bill.getPaymentStatus());
+			existing.setPaymentMethod(bill.getPaymentMethod());
+			existing.setBillDate(bill.getBillDate());
+
+			billRepo.save(existing);
+
+		} catch (Exception e) {
+			logger.error("An Error is occurred while updating Bill: {}", e.getMessage());
 		}
 	}
-
-
 }

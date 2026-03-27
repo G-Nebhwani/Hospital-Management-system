@@ -19,8 +19,8 @@ public class AppointmentService {
 
 	public List<Appointment> getAllAppintments() {
 		try {
-			System.out.println("into service Layer");
-			return null;
+			System.out.println("List of Appointment");
+			return appointmentrepo.findAll();
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while fetching all Appointment: {}", e.getMessage());
@@ -30,7 +30,7 @@ public class AppointmentService {
 
 	public Appointment getAppointmentById(Long id) {
 		try {
-			return null;
+			return appointmentrepo.findById(id).orElse(null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while fetching Appointment By ID : {}", e.getMessage());
@@ -38,10 +38,9 @@ public class AppointmentService {
 		}
 	}
 
-
 	public Appointment createAppointment(Appointment appointment) {
 		try {
-			return null;
+			return appointmentrepo.save(appointment);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while creating Appointment: {}", e.getMessage());
@@ -51,7 +50,7 @@ public class AppointmentService {
 
 	public void deleteAppiotment(long id) {
 		try {
-			return;
+			appointmentrepo.deleteById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 			logger.error("An Error is occurred while deleting Appointment: {}", e.getMessage());
@@ -59,12 +58,18 @@ public class AppointmentService {
 		}
 	}
 
-
-	public void updateAppointment(Long id) {
+	public void updateAppointment(Long id, Appointment appointment) {
 		try {
-			return ;
+			Appointment existing = appointmentrepo.findById(id)
+					.orElseThrow(() -> new RuntimeException("Appointment not found with id: " + id));
+
+			existing.setPatientId(appointment.getPatientId());
+			existing.setDoctorId(appointment.getDoctorId());
+			existing.setDate(appointment.getDate());
+
+			appointmentrepo.save(existing);
+
 		} catch (Exception e) {
-			// TODO: handle exception
 			logger.error("An Error is occurred while updating Appointment: {}", e.getMessage());
 		}
 	}
